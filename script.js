@@ -11,6 +11,16 @@ const transactionForm = document.getElementById('transaction-form');
 
 let transactions = [];
 
+function renderTransactions() {
+    transactionList.innerHTML = '';
+
+    transactions.forEach(function (transaction) {
+        const li = document.createElement('li');
+        li.textContent = `${transaction.description} - ${transaction.amount}`;
+        transactionList.appendChild(li);
+    })
+}
+
 transactionForm.addEventListener('submit', function (event){
     event.preventDefault();
 
@@ -28,7 +38,7 @@ transactionForm.addEventListener('submit', function (event){
     };
 
     transactions.push(transaction);
+    renderTransactions();
 
-    transactionForm.reset();
-    
+    transactionForm.reset();       
 });
