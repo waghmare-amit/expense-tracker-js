@@ -11,4 +11,24 @@ const transactionForm = document.getElementById('transaction-form');
 
 let transactions = [];
 
-console.log(transactionForm, amountInput, transactionList);
+transactionForm.addEventListener('submit', function (event){
+    event.preventDefault();
+
+    const description = descriptionInput.value;
+    const amount = parseFloat(amountInput.value);
+    const category = categorySelect.value;
+    const type = typeSelect.value;
+
+    const transaction = {
+        id: Date.now(),
+        description,
+        amount,
+        category, 
+        type
+    };
+
+    transactions.push(transaction);
+
+    transactionForm.reset();
+    
+});
