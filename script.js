@@ -21,6 +21,29 @@ function renderTransactions() {
     })
 }
 
+function updateBalance() {
+    const incomes = transactions.filter(function (t) {
+        return t.type === 'income';
+    });
+
+    const totalIncome = incomes.reduce(function (sum, item) {
+        return sum + item.amount;
+    }, 0);
+
+    const expenses = transactions.filter(function (t) {
+        return t.type === 'expense';
+    });
+
+    const totalExpense = expenses.reduce(function (sum, item) {
+        return sum + item.amount;
+    }, 0);
+
+    const balance = totalIncome - totalExpense;
+    balanceEl.textContent = `₹${balance}`;
+    totalIncomeEl.textContent = `₹${totalIncome}`;
+    totalExpenseEl.textContent = `₹${totalExpense}`;
+}
+
 transactionForm.addEventListener('submit', function (event){
     event.preventDefault();
 
@@ -39,6 +62,7 @@ transactionForm.addEventListener('submit', function (event){
 
     transactions.push(transaction);
     renderTransactions();
+    updateBalance();
 
     transactionForm.reset();       
 });
