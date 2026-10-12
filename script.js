@@ -17,6 +17,13 @@ function renderTransactions() {
     transactions.forEach(function (transaction) {
         const li = document.createElement('li');
         li.textContent = `${transaction.description} - ${transaction.amount}`;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.dataset.id = transaction.id;
+        
+        li.appendChild(deleteBtn);
         transactionList.appendChild(li);
     })
 }
@@ -65,4 +72,15 @@ transactionForm.addEventListener('submit', function (event){
     updateBalance();
 
     transactionForm.reset();       
+});
+
+transactionList.addEventListener('click', function (event) {
+    if (event.target.classList.contains('delete-btn')) {
+        const id = Number(event.target.dataset.id);
+        transactions = transactions.filter(function (t) {
+            return t.id !== id;
+        });
+        renderTransactions();
+        updateBalance();
+    }
 });
