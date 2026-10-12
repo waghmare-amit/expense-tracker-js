@@ -9,7 +9,7 @@ const totalExpenseEl = document.getElementById('total-expense');
 const filterSelect = document.getElementById('filter');
 const transactionForm = document.getElementById('transaction-form');
 
-let transactions = [];
+let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 function renderTransactions() {
     transactionList.innerHTML = '';
@@ -63,6 +63,10 @@ function updateBalance() {
     totalExpenseEl.textContent = `₹${totalExpense}`;
 }
 
+function saveTransactions() {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
 transactionForm.addEventListener('submit', function (event){
     event.preventDefault();
 
@@ -80,6 +84,8 @@ transactionForm.addEventListener('submit', function (event){
     };
 
     transactions.push(transaction);
+    
+    saveTransactions();
     renderTransactions();
     updateBalance();
 
@@ -92,11 +98,15 @@ transactionList.addEventListener('click', function (event) {
         transactions = transactions.filter(function (t) {
             return t.id !== id;
         });
+        saveTransactions();
         renderTransactions();
         updateBalance();
     }
 });
 
-filterSelect.addEventListener('change', function (event) {
+filterSelect.addEventListener('change', function () {
     renderTransactions();
 });
+
+renderTransactions();
+updateBalance();
