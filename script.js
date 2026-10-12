@@ -14,7 +14,19 @@ let transactions = [];
 function renderTransactions() {
     transactionList.innerHTML = '';
 
-    transactions.forEach(function (transaction) {
+    const selectedCategory = filterSelect.value;
+
+    let visibleTransactions = transactions;
+
+    if (selectedCategory === 'all') {
+        visibleTransactions = transactions;
+    } else {
+        visibleTransactions = transactions.filter(function (t) {
+            return t.category === selectedCategory;
+        });   
+    }
+
+    visibleTransactions.forEach(function (transaction) {
         const li = document.createElement('li');
         li.textContent = `${transaction.description} - ${transaction.amount}`;
 
@@ -25,7 +37,7 @@ function renderTransactions() {
         
         li.appendChild(deleteBtn);
         transactionList.appendChild(li);
-    })
+    });
 }
 
 function updateBalance() {
@@ -83,4 +95,8 @@ transactionList.addEventListener('click', function (event) {
         renderTransactions();
         updateBalance();
     }
+});
+
+filterSelect.addEventListener('change', function (event) {
+    renderTransactions();
 });
