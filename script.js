@@ -28,14 +28,24 @@ function renderTransactions() {
 
     visibleTransactions.forEach(function (transaction) {
         const li = document.createElement('li');
-        li.textContent = `${transaction.description} - ${transaction.amount}`;
+        li.classList.add(transaction.type);
+
+        const descriptionSpan = document.createElement('span');
+        descriptionSpan.textContent = transaction.description;
+        descriptionSpan.classList.add('description');
+        li.appendChild(descriptionSpan);
+
+        const amountSpan = document.createElement('span');
+        amountSpan.textContent = `₹${transaction.amount}`;
+        amountSpan.classList.add('amount');
+        li.appendChild(amountSpan);
 
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.classList.add('delete-btn');
         deleteBtn.dataset.id = transaction.id;
-        
         li.appendChild(deleteBtn);
+        
         transactionList.appendChild(li);
     });
 }
