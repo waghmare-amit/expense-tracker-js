@@ -45,7 +45,7 @@ h1 {
 h2 {
     font-size: 1rem;
     color: var(--muted);
-    margin-bottom: 12px
+    margin-bottom: 12px;
 }
 
 .balance-card {
@@ -106,4 +106,63 @@ select:focus {
 
 #transaction-form button:hover {
     background: #4338ca;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.description {
+    flex: 1;
+}
+
+.income .amount {
+    color: var(--income);
+}
+
+.expense .amount {
+    color: var(--expense);
+}
+
+.amount {
+    font-weight: 600;
+}
+
+.income .amount::before {
+    content: '+';
+}
+
+.expense .amount::before {
+    content: '-';
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+    color: var(--expense);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.list-header h2 {
+    margin: 0;
 }
