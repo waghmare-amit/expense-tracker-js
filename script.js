@@ -26,6 +26,14 @@ function renderTransactions() {
         });   
     }
 
+    if (visibleTransactions.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'No transactions found';
+        li.classList.add('empty');
+        transactionList.appendChild(li);
+        return;
+    }
+
     visibleTransactions.forEach(function (transaction) {
         const li = document.createElement('li');
         li.classList.add(transaction.type);

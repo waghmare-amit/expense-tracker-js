@@ -166,3 +166,22 @@ li {
 .list-header h2 {
     margin: 0;
 }
+
+.empty {
+    justify-content: center;
+    color: var(--muted);
+    border-bottom: none;
+}
+
+li:hover {
+    background: #f9fafb;
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+    }
+    #balance {
+        font-size: 2rem;
+    }
+}
