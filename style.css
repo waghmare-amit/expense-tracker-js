@@ -67,3 +67,43 @@ h2 {
     justify-content: space-between;
     margin-top: 12px;
 }
+
+#transaction-form {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+#description,
+#amount,
+#transaction-form button {
+    grid-column: 1 / -1;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+#transaction-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#transaction-form button:hover {
+    background: #4338ca;
+}
